@@ -53,6 +53,7 @@
             // SourceText
             // 
             this.SourceText.BackColor = System.Drawing.SystemColors.Info;
+            this.SourceText.Font = new System.Drawing.Font("Sitka Small", 10.8F);
             this.SourceText.Location = new System.Drawing.Point(67, 53);
             this.SourceText.Multiline = true;
             this.SourceText.Name = "SourceText";
@@ -83,6 +84,7 @@
             // OutputText
             // 
             this.OutputText.BackColor = System.Drawing.SystemColors.Info;
+            this.OutputText.Font = new System.Drawing.Font("Sitka Small", 10.8F);
             this.OutputText.Location = new System.Drawing.Point(67, 326);
             this.OutputText.Multiline = true;
             this.OutputText.Name = "OutputText";
@@ -102,6 +104,7 @@
             this.Decipher.TabStop = true;
             this.Decipher.Text = "Decipher\r";
             this.Decipher.UseVisualStyleBackColor = true;
+            this.Decipher.CheckedChanged += new System.EventHandler(this.Decipher_CheckedChanged);
             // 
             // Encrypt
             // 
@@ -114,6 +117,7 @@
             this.Encrypt.TabStop = true;
             this.Encrypt.Text = "Encrypt";
             this.Encrypt.UseVisualStyleBackColor = true;
+            this.Encrypt.CheckedChanged += new System.EventHandler(this.Encrypt_CheckedChanged);
             // 
             // Apply
             // 
@@ -126,7 +130,7 @@
             this.Apply.TabIndex = 6;
             this.Apply.Text = "Apply";
             this.Apply.UseVisualStyleBackColor = false;
-            this.Apply.Click += new System.EventHandler(this.button2_Click);
+            this.Apply.Click += new System.EventHandler(this.Apply_Click);
             // 
             // Form1
             // 
