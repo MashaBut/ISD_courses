@@ -35,21 +35,23 @@
             // 
             // Picture
             // 
-            this.Picture.Location = new System.Drawing.Point(27, 49);
+            this.Picture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.Picture.Location = new System.Drawing.Point(27, 23);
             this.Picture.Name = "Picture";
-            this.Picture.Size = new System.Drawing.Size(268, 331);
+            this.Picture.Size = new System.Drawing.Size(319, 415);
+            this.Picture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.Picture.TabIndex = 0;
             this.Picture.TabStop = false;
             // 
             // Content
             // 
             this.Content.BackColor = System.Drawing.Color.SeaGreen;
-            this.Content.Font = new System.Drawing.Font("Arial Rounded MT Bold", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Content.Font = new System.Drawing.Font("Arial Rounded MT Bold", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Content.Location = new System.Drawing.Point(352, 48);
             this.Content.Multiline = true;
             this.Content.Name = "Content";
             this.Content.ReadOnly = true;
-            this.Content.Size = new System.Drawing.Size(665, 112);
+            this.Content.Size = new System.Drawing.Size(665, 74);
             this.Content.TabIndex = 1;
             this.Content.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 

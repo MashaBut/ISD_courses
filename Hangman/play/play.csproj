@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="ManagerFile.cs" />
     <Compile Include="ManagerPicture.cs" />
+    <Compile Include="ManagerString.cs" />
     <Compile Include="MessageError.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

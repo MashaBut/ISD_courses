@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using play;
 
@@ -22,8 +19,11 @@ namespace Hangman
             ManagerFile managerFile = new ManagerFile();
             ManagerPicture managerPicture = new ManagerPicture();
             MessageError messageError = new MessageError();
-            Presenter presenter = new Presenter(hangman, managerFile, managerPicture, messageError);
-            Application.Run(new Hangman());
+            ManagerString managerString = new ManagerString();
+
+            Presenter presenter = new Presenter(hangman, managerFile, managerPicture, messageError, managerString);
+
+            Application.Run(hangman);
         }
     }
 }

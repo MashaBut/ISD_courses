@@ -1,26 +1,26 @@
-﻿using System.Windows.Forms;
-
-namespace play
+﻿namespace play
 {
     public interface IMessageError
     {
-        void MessageWinner();
-        void MessageLosser(string str);
-        void MessageErrorFile(string str);
+        string MessageWinner();
+        string MessageLosser(string str);
+        string MessageErrorFile(string str);
     }
     public class MessageError:IMessageError
     {
-        public void MessageWinner()
+        public string MessageWinner()
         {
-            MessageBox.Show("Вы отгадали слово");
+            return "Вы отгадали слово";
         }
-        public void MessageLosser(string str)
+
+        public string MessageLosser(string str)
         {
-            MessageBox.Show($"Вы проиграли!!! Правильное слово: {str}");
+            return $"Вы проиграли!!! Правильное слово: {str}";
         }
-        public void MessageErrorFile(string str)
+
+        public string MessageErrorFile(string str)
         {
-            MessageBox.Show($"Ошибка доступа к {str}");
+            return $"Ошибка доступа к {str}";
         }
     }
 }

@@ -6,23 +6,29 @@ namespace Hangman
 {
     interface IHangman
     {
-        Bitmap Element { set; }
-        string content { set; }
         event EventHandler ButtonClick;
-        event EventHandler ContentChanged;
-        void Change(string str);
+
+        char ButtonElement { get; }
+        Color color { get; set; }
+
+        void DrawText(string str);
+        void MessageBoxPrint(string str);
+        void DrawPicture(Bitmap bitmap);
     }
     public partial class Hangman : Form, IHangman
     {
         public Hangman()
         {
             InitializeComponent();
-            BiuldButton();
-            Content.TextChanged += Content_TextChanged;
-        }
+            BiuldButton(); //dynamic button creation
+        }  
 
         Button[] buttons = new Button[32];
-        string[] alphabet = { "А", "Б", "В", "Г", "Д", "Е", "Ж", "З", "И", "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц", "Ч", "Ш", "Щ", "Ъ", "Ы", "Ь", "Э", "Ю", "Я" };
+
+        string[] alphabet = { "а", "б", "в", "г", "д", "е", "ж", "з", "и", "й", "к", "л", "м", "н", "о", "п", "р", "с", "т", "у", "ф", "х", "ц", "ч", "ш", "щ", "ъ", "ы", "ь", "э", "ю", "я" };
+        char sumbol;
+
+        public Color color { get; set; }
 
         private void BiuldButton()
         {
@@ -42,30 +48,44 @@ namespace Hangman
                 buttons[i].Location = new Point(buttons[i].Width * i + x, y);
                 buttons[i].Text = string.Format(alphabet[i]);
                 buttons[i].Tag = i;
+                buttons[i].Font = new Font("Calibri", 28);
                 this.Controls.Add(buttons[i]);
                 buttons[i].Click += Button_Click;
             }
         }
 
+        public char ButtonElement => sumbol; //property to get the character of the current row
+
         private void Button_Click(object sender, EventArgs eventArgs)
         {
+            Button letterButton = (sender as Button);
+            sumbol = Convert.ToChar(letterButton.Text);
             ButtonClick?.Invoke(this, EventArgs.Empty);
+            ColorButton(letterButton);
         }
 
-        public void Content_TextChanged(object sender, EventArgs e)
-        {
-            ContentChanged?.Invoke(this, EventArgs.Empty);
-        }
-
-        public void Change(string str)
+        public void DrawText(string str)
         {
             Content.Clear();
             Content.Text = str;
         }
-        public Bitmap Element { set => Picture.Image = value; }
-        public string content { set => Content.Text = value; }
+
+        public void ColorButton(object sender)
+        {
+            Button button = (sender as Button);
+            button.BackColor = color ;
+        }
+
+        public void DrawPicture(Bitmap bitmap)
+        {
+            Picture.BackgroundImage = bitmap;
+        }
+
+        public void MessageBoxPrint(string str)
+        {
+            MessageBox.Show(str);
+        }
+
         public event EventHandler ButtonClick;
-        public event EventHandler ContentChanged;
-       
     }
 }

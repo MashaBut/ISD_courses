@@ -12,7 +12,7 @@ namespace play
 
     public class ManagerPicture:IManagerPicture
     {
-        Bitmap[] image;
+        Bitmap[] image= new Bitmap[8];
 
         private string Path { get; set; }
 
@@ -27,11 +27,12 @@ namespace play
         {
             int j = 1;
             for (int i = 0; i < 7; i++)
-            {//?
-                image[i] = new Bitmap($"{Path}виселица{j}");
+            {
+                image[i] = new Bitmap($"{Path}\\виселица{j}.jpg");
                 j++;
             }
         }
+
         public Bitmap GetElement(int index)
         {
             return image[index];
