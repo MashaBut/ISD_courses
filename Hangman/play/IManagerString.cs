@@ -13,5 +13,7 @@ namespace play
         bool CheckTrueString();
 
         string CorrectLetter { get; }
+
+        void Clear();
     }
 }

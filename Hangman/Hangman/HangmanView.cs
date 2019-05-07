@@ -20,13 +20,14 @@ namespace Hangman
         
 
         public Color Color { get; set; }
-
+        /*why this option is bad, except that it will jump on form*/
         private void BuildButton()
         {
             GenerateButton(0, 8, 280, 200);
             GenerateButton(8, 16, -200, 270);
             GenerateButton(16, 24, -680, 340);
             GenerateButton(24, 32, -1160, 410);
+            ColorButtons();
         }
 
         private void GenerateButton(int a,int b,int x,int y)
@@ -44,7 +45,11 @@ namespace Hangman
                 buttons[i].Click += Button_Click;
             }
         }
-
+        public void ColorButtons()
+        {
+            for (int i = 0; i < countButton; i++)
+                buttons[i].BackColor = Color.LightGray;
+        }
         public char ButtonElement => sign; //property to get the character of the current row
 
         private void Button_Click(object sender, EventArgs eventArgs)
@@ -68,6 +73,11 @@ namespace Hangman
         public void MessageBoxShow(string str)
         {
             MessageBox.Show(str);
+        }
+
+        public void ClearContent()
+        {
+            Content.Clear();
         }
 
         public event EventHandler ButtonClick;

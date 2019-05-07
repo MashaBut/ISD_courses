@@ -13,8 +13,12 @@ namespace Hangman
 
         void DrawText(string str);
 
-        void MessageBoxShow(string str)
-            ;
+        void MessageBoxShow(string str);
+
         void DrawPicture(Bitmap bitmap);
+
+        void ClearContent();
+
+        void ColorButtons();
     }
 }

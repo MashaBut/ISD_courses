@@ -43,5 +43,10 @@ namespace play
         {
             throw new System.NotImplementedException();
         }
+
+        public int CountImage()
+        {
+            return countImage;
+        }
     }
 }

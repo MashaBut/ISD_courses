@@ -28,6 +28,7 @@ namespace play
             }
             return changeString.ToString();
         }
+
         public bool CheckTrueString()//checking all guessed letters
         {
             return !changeString.ToString().Contains("*");
@@ -36,5 +37,10 @@ namespace play
         public bool GetChangingSymbol => position;
 
         public string CorrectLetter => content;
+
+        public void Clear()
+        {
+            changeString = new StringBuilder();
+        }
     }
 }

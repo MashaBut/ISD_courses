@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Windows.Forms;
 using System.Drawing;
 using play;
 
@@ -15,7 +14,9 @@ namespace Hangman
         private readonly IManagerString managerString;
 
         private int i = 1;
-        private static Color[] c = { Color.Red, Color.Green };
+        private int countImage;
+        private string elem;
+        private static Color[] c = { Color.Red, Color.Green,Color.LightGray };
 
         public Presenter(IHangman hangman, IManagerFile managerFile, IManagerPicture managerPicture, IMessageError messageError,IManagerString managerString)
         {
@@ -39,10 +40,10 @@ namespace Hangman
             }
 
             this.managerFile.FileRead();
-            string elem = this.managerFile.GetElement();
+            elem = this.managerFile.GetElement();
 
             this.hangman.DrawText(this.managerString.SecretString(elem));//secretString display
-
+            countImage = managerPicture.CountImage();
             this.managerPicture.FileRead();
             this.hangman.DrawPicture(this.managerPicture.GetElement(0));//image display
         }
@@ -60,6 +61,7 @@ namespace Hangman
                 if(managerString.CheckTrueString())
                 {
                     hangman.MessageBoxShow(messageError.Winner());
+                    hangman.Color = c[2];
                     Run();
                 }
                 hangman.Color = c[1];
@@ -71,9 +73,10 @@ namespace Hangman
                     this.hangman.DrawPicture(this.managerPicture.GetElement(i++));
                     hangman.Color = c[0];
                 }
-                else if(i==7)
+                else if(i==countImage)
                 {
                     hangman.MessageBoxShow(messageError.Losser(managerString.CorrectLetter));
+                    hangman.Color = c[2];
                     Run();
                 }
             }
@@ -81,8 +84,13 @@ namespace Hangman
 
         public void Run()
         {
-            /*i don`t know other short options*/
-            Application.Restart();
+            i = 1;
+            managerString.Clear();
+            hangman.ClearContent();
+            elem = this.managerFile.GetElement();
+            this.hangman.DrawText(this.managerString.SecretString(elem));//secretString display
+            this.hangman.DrawPicture(this.managerPicture.GetElement(0));//image display
+            hangman.ColorButtons();
         }
     }
 }

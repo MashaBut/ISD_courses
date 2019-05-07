@@ -5,5 +5,7 @@ namespace play
     public interface IManagerPicture : IManagerFile
     {
         Bitmap GetElement(int index);
+
+        int CountImage();
     }
 }
