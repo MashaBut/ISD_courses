@@ -43,6 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IManagerError.cs" />
+    <Compile Include="IManagerFile.cs" />
+    <Compile Include="IManagerPicture.cs" />
+    <Compile Include="IManagerString.cs" />
     <Compile Include="ManagerFile.cs" />
     <Compile Include="ManagerPicture.cs" />
     <Compile Include="ManagerString.cs" />

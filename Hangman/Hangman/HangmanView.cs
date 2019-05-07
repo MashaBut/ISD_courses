@@ -4,33 +4,24 @@ using System.Windows.Forms;
 
 namespace Hangman
 {
-    interface IHangman
+    public partial class HangmanView : Form, IHangman
     {
-        event EventHandler ButtonClick;
-
-        char ButtonElement { get; }
-        Color color { get; set; }
-
-        void DrawText(string str);
-        void MessageBoxPrint(string str);
-        void DrawPicture(Bitmap bitmap);
-    }
-    public partial class Hangman : Form, IHangman
-    {
-        public Hangman()
+        public HangmanView()
         {
             InitializeComponent();
-            BiuldButton(); //dynamic button creation
-        }  
+            BuildButton(); //dynamic button creation
+        }
+        
+        private static int countButton = 32;
+        private Button[] buttons = new Button[countButton];
 
-        Button[] buttons = new Button[32];
+        private string[] alphabet = { "а", "б", "в", "г", "д", "е", "ж", "з", "и", "й", "к", "л", "м", "н", "о", "п", "р", "с", "т", "у", "ф", "х", "ц", "ч", "ш", "щ", "ъ", "ы", "ь", "э", "ю", "я" };
+        private char sign;
+        
 
-        string[] alphabet = { "а", "б", "в", "г", "д", "е", "ж", "з", "и", "й", "к", "л", "м", "н", "о", "п", "р", "с", "т", "у", "ф", "х", "ц", "ч", "ш", "щ", "ъ", "ы", "ь", "э", "ю", "я" };
-        char sumbol;
+        public Color Color { get; set; }
 
-        public Color color { get; set; }
-
-        private void BiuldButton()
+        private void BuildButton()
         {
             GenerateButton(0, 8, 280, 200);
             GenerateButton(8, 16, -200, 270);
@@ -54,26 +45,19 @@ namespace Hangman
             }
         }
 
-        public char ButtonElement => sumbol; //property to get the character of the current row
+        public char ButtonElement => sign; //property to get the character of the current row
 
         private void Button_Click(object sender, EventArgs eventArgs)
         {
             Button letterButton = (sender as Button);
-            sumbol = Convert.ToChar(letterButton.Text);
+            sign = Convert.ToChar(letterButton.Text);
             ButtonClick?.Invoke(this, EventArgs.Empty);
-            ColorButton(letterButton);
+            letterButton.BackColor = Color;
         }
 
         public void DrawText(string str)
         {
-            Content.Clear();
             Content.Text = str;
-        }
-
-        public void ColorButton(object sender)
-        {
-            Button button = (sender as Button);
-            button.BackColor = color ;
         }
 
         public void DrawPicture(Bitmap bitmap)
@@ -81,7 +65,7 @@ namespace Hangman
             Picture.BackgroundImage = bitmap;
         }
 
-        public void MessageBoxPrint(string str)
+        public void MessageBoxShow(string str)
         {
             MessageBox.Show(str);
         }

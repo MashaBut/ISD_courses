@@ -3,16 +3,10 @@ using System.IO;
 
 namespace play
 {
-    public interface IManagerPicture
-    {
-        bool FileExictance(string Path);
-        void FileRead();
-        Bitmap GetElement(int index);
-    }
-
     public class ManagerPicture:IManagerPicture
     {
-        Bitmap[] image= new Bitmap[8];
+        private const int countImage= 7;
+        private Bitmap[] images= new Bitmap[countImage];
 
         private string Path { get; set; }
 
@@ -26,16 +20,28 @@ namespace play
         public void FileRead()
         {
             int j = 1;
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < countImage; i++)
             {
-                image[i] = new Bitmap($"{Path}\\виселица{j}.jpg");
-                j++;
+                try
+                {
+                    images[i] = new Bitmap($"{Path}\\виселица{j}.jpg");
+                    j++;
+                }
+                catch { break; }
             }
         }
 
         public Bitmap GetElement(int index)
         {
-            return image[index];
+            if (index >= 0 && index <= countImage)
+                return images[index];
+            else
+                return null;
+        }
+
+        public string GetElement()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

@@ -46,17 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Hangman.cs">
+    <Compile Include="HangmanView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Hangman.Designer.cs">
-      <DependentUpon>Hangman.cs</DependentUpon>
+    <Compile Include="HangmanView.Designer.cs">
+      <DependentUpon>HangmanView.cs</DependentUpon>
     </Compile>
+    <Compile Include="IHangman.cs" />
     <Compile Include="Presenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Hangman.resx">
-      <DependentUpon>Hangman.cs</DependentUpon>
+    <EmbeddedResource Include="HangmanView.resx">
+      <DependentUpon>HangmanView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -90,9 +91,9 @@
     <Content Include="Resources\виселица7.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\play\play.csproj">
+    <ProjectReference Include="..\play\LogicHangman.csproj">
       <Project>{5106fe03-0301-41bb-8e6b-bf6997de26e3}</Project>
-      <Name>play</Name>
+      <Name>LogicHangman</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

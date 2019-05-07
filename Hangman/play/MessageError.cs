@@ -1,24 +1,19 @@
 ﻿namespace play
 {
-    public interface IMessageError
-    {
-        string MessageWinner();
-        string MessageLosser(string str);
-        string MessageErrorFile(string str);
-    }
+
     public class MessageError:IMessageError
     {
-        public string MessageWinner()
+        public string Winner()
         {
             return "Вы отгадали слово";
         }
 
-        public string MessageLosser(string str)
+        public string Losser(string str)
         {
             return $"Вы проиграли!!! Правильное слово: {str}";
         }
 
-        public string MessageErrorFile(string str)
+        public string ErrorFile(string str)
         {
             return $"Ошибка доступа к {str}";
         }

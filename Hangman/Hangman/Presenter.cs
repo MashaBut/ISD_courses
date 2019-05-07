@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Windows.Forms;
 using System.Drawing;
 using play;
 
@@ -13,8 +14,8 @@ namespace Hangman
         private readonly IMessageError messageError;
         private readonly IManagerString managerString;
 
-        int i = 1;
-        Color[] c = { Color.Red, Color.Green };
+        private int i = 1;
+        private static Color[] c = { Color.Red, Color.Green };
 
         public Presenter(IHangman hangman, IManagerFile managerFile, IManagerPicture managerPicture, IMessageError messageError,IManagerString managerString)
         {
@@ -25,23 +26,22 @@ namespace Hangman
             this.managerString = managerString;
                  
             this.hangman.ButtonClick += this.Hangman_ButtonClick;
-            //system pathname indicates bin \ Debug
-            string pathToPicture = @"C:\Users\Мария\Documents\GitHub\ISD_courses\Hangman\Hangman\Resources";
-            string pathToText = @"C:\Users\Мария\Documents\GitHub\ISD_courses\Hangman\Hangman\Resources\dictionary.txt";
+            string pathToPicture = @"Resources";
+            string pathToText = @"Resources\dictionary.txt";
 
             bool isFileExist = this.managerFile.FileExictance(pathToText);
             bool isPictureExist = this.managerPicture.FileExictance(pathToPicture);
 
             if (!isFileExist && !isPictureExist)
             {
-                this.hangman.MessageBoxPrint(this.messageError.MessageErrorFile("данным"));
+                this.hangman.MessageBoxShow(this.messageError.ErrorFile("данным"));
                 return;
             }
 
             this.managerFile.FileRead();
             string elem = this.managerFile.GetElement();
 
-            this.hangman.DrawText(Convert.ToString(this.managerString.SecretString(elem)));//secretString display
+            this.hangman.DrawText(this.managerString.SecretString(elem));//secretString display
 
             this.managerPicture.FileRead();
             this.hangman.DrawPicture(this.managerPicture.GetElement(0));//image display
@@ -49,35 +49,39 @@ namespace Hangman
 
         private void Hangman_ButtonClick(object sender, EventArgs e)
         {
-            
-            string str = managerString.CheckElement(hangman.ButtonElement).ToString();
+            /*
+             * 26. string str = managerString.CheckElement(hangman.ButtonElement).ToString(); => use EventArgs
+             * Why is my way bad?
+             */
+            string str = managerString.CheckElementForChange(hangman.ButtonElement);
             hangman.DrawText(str);
-            if (managerString.GetChangeSumbol)
+            if (managerString.GetChangingSymbol)
             {
                 if(managerString.CheckTrueString())
                 {
-                    hangman.MessageBoxPrint(messageError.MessageWinner());
+                    hangman.MessageBoxShow(messageError.Winner());
                     Run();
                 }
-                hangman.color = c[1];
+                hangman.Color = c[1];
             }
             else
             {
                 if(i<7)
                 {
                     this.hangman.DrawPicture(this.managerPicture.GetElement(i++));
-                    hangman.color = c[0];
+                    hangman.Color = c[0];
                 }
                 else if(i==7)
                 {
-                    hangman.MessageBoxPrint(messageError.MessageLosser(managerString.TrueAns));
+                    hangman.MessageBoxShow(messageError.Losser(managerString.CorrectLetter));
                     Run();
                 }
             }
         }
-       
+
         public void Run()
         {
+            /*i don`t know other short options*/
             Application.Restart();
         }
     }

@@ -4,19 +4,18 @@ using System.IO;
 
 namespace play
 {
-    public interface IManagerFile
-    {
-        bool FileExictance(string Path);
-        void FileRead();
-        string GetElement();
-    }
     public class ManagerFile : IManagerFile
     {
-        Random rand = new Random();
+        private Random rand = new Random();
 
-        private readonly Encoding defaulfEncoding = Encoding.GetEncoding(1251);
+        private readonly Encoding defaulfEncoding = Encoding.Default;
+        /*
+         utf
+         There is no way to use it.Only one kryakozyably:(
+         */
         private string Path { get; set; }
-        string[] text;
+
+        private string[] text;
 
         public bool FileExictance(string Path)
         {

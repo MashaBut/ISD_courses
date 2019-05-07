@@ -4,18 +4,18 @@ using play;
 
 namespace Hangman
 {
-    static class Program
+    public static class Program
     {
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
         [STAThread]
-        static void Main()
+        public static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Hangman hangman = new Hangman();
+            HangmanView hangman = new HangmanView();
             ManagerFile managerFile = new ManagerFile();
             ManagerPicture managerPicture = new ManagerPicture();
             MessageError messageError = new MessageError();
