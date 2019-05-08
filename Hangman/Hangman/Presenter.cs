@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Forms;
 using System.Drawing;
 using play;
 
@@ -85,12 +84,19 @@ namespace Hangman
         public void Run()
         {
             i = 1;
+
             managerString.Clear();
+
             hangman.ClearContent();
-            elem = this.managerFile.GetElement();
-            this.hangman.DrawText(this.managerString.SecretString(elem));//secretString display
-            this.hangman.DrawPicture(this.managerPicture.GetElement(0));//image display
+
+            elem = managerFile.GetElement();
+
+            hangman.DrawText(managerString.SecretString(elem));//secretString display
+
+            hangman.DrawPicture(managerPicture.GetElement(0));//image display
+
             hangman.ColorButtons();
+            /*maybe use patterns Memento*/
         }
     }
 }
