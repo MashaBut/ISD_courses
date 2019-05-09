@@ -1,4 +1,4 @@
-"1. play.csproj - naming rules//+
+1. play.csproj - naming rules//+
 2. separate class methods with new line//+
 3. all class members should have access modificator//+
 4. public void FileRead() -> all file operations should be inclaused in try/catch. better to check if file exist outside class and avoid FileExictance method.//+
